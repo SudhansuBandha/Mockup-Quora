@@ -38,11 +38,12 @@ function NavBar(props){
 
 
     return <header className="header">
+      
         <div className="title">
-           <Link to="/" className="bgst">MockQuora</Link>
+           <Link to="/" className="bgst">Mockup Quora</Link>
         </div>
         
-        <NavLink exact to ="/" className="red link"
+        <NavLink exact to ="/" className="red link" style={{marginLeft:"20px"}}
         >
         <div  className="home-tab-navbar">
           {FH}Home
@@ -58,7 +59,7 @@ function NavBar(props){
         </div>
         </NavLink>
         */} 
-        <div className="search-box">
+        <div className="search-box" style={{marginLeft:"40px"}}>
         <input 
         type="text" 
         name="" 
@@ -76,10 +77,15 @@ function NavBar(props){
           text={text}
         />
         </div>
-        <div className="question" id="myBtn">
-        <div className="link-blue"  onClick={()=>setisOpen(true)}>Add Question</div>
-        <QuestionModal open={isOpen} onClose={()=> setisOpen(false)}/>
-        </div>
+        {
+          userInfo1 ?
+          <div className="question" id="myBtn" style={{marginLeft:"20px"}}>
+          <div className="link-blue"  onClick={()=>setisOpen(true)}>Add Question</div>
+          <QuestionModal open={isOpen} onClose={()=> setisOpen(false)}/>
+          </div>:
+          <div style={{width:"97px"}}></div>
+        }
+        
 
         {userInfo1 ? (
           <NavLink  to={'/profile/'+userInfo1.username} className="red link" onClick={Profile}>

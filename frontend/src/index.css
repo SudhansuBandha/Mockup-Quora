@@ -20,8 +20,8 @@ body { position: absolute; }
   background-color: #ffffff;
   display: flex;
   align-items: center;
-  padding-left:130px;
-  padding-right: 120px;
+  padding-left:80px;
+  /*padding-right: 120px;*/
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 1rem;
   text-decoration: none;
@@ -135,17 +135,17 @@ a:hover{
 /* Search Modal */
 .overlay-search-modal{
   position: fixed;
-  top: 50px;
+  top: 0px;
   left: 0;
   right: 0;
   bottom: 0;
   background-color:rgba(39, 37, 37, 0.7);
-  z-Index: 50;
+  z-Index: 1000;
 }
 .search-modal{
-  position: absolute;
-  margin-top: 13%;
-  left: 54.5%;
+  position: fixed;
+  top: 25%;
+  left: 54%;
   transform: translate(-50%, -50%);
   background-color: none;
   box-sizing: border-box;

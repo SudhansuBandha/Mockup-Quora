@@ -103,7 +103,7 @@ function Profile(props){
         <div className="followers-count" style={{marginBottom:"20px", height:"31px"}}>
             
             {
-                (userInfo1.id!==Profile._id) &&
+                (userInfo1&&userInfo1.id!==Profile._id) &&
                 <FollowButton
                     type="user"
                     id={Profile._id}

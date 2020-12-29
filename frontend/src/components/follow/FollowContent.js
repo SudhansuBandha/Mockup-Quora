@@ -71,7 +71,7 @@ function FollowContent(props) {
             </div></div>
             </div>
             {
-                ((userInfo1.id!==props.element.userFrom._id)) &&
+                ((userInfo1&&userInfo1.id!==props.element.userFrom._id)) &&
                 <div className="button">
                 <FollowButton
                     type="user"

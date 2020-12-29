@@ -71,7 +71,7 @@ function ProfileAnswers(props) {
               }
               </div>  
           })             
-            })  
+            }
           
           
         </div>
