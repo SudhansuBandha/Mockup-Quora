@@ -1,0 +1,84 @@
+.editor{
+    min-height: 350px;
+    width: 627px;
+    border: 2px solid #dee3e0;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+.user-profile{
+    height: 70px;
+    width:100%;
+    padding: 10px;
+    background-color: #f2f4f7;
+    border-bottom: none;
+    display: flex;
+}
+.rdw-editor-toolbar{
+    padding:4px 10px 0px 10px;
+    margin-bottom: 0;
+    width:99.81%;
+}
+.rdw-option-wrapper{
+ border: none;
+ height: 30px;  
+}
+
+.rdw-option-wrapper:hover{
+box-shadow: none;
+border: 2px solid aqua;
+}
+
+.rdw-option-wrapper:active{
+box-shadow: none;
+}
+
+div.rdw-editor-main{
+    padding: 10px;
+    padding-top: 20px;
+    border: 2px solid #dee3e0;
+    border-top: none;
+    width:100%;
+    min-height:132px;
+    background-color: #fff;    
+}
+.editor-bottom{
+    padding: 0 10px;
+    padding-bottom: 5px;
+    display: flex;
+}
+.editor-bottom-submit{
+    margin-top: 10px;
+    background-color: #2e69ff;
+    height: 26px;
+    width: 85px;
+    padding-left: 17px;
+    
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-radius: 40px;
+    color: antiquewhite;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+}
+.editor-bottom-submit:hover{
+    background-color: #16378a;
+    cursor: pointer;
+}
+.editor-bottom-cancel{
+    margin-top: 10px;
+    background-color: #ed071b;
+    height: 26px;
+    width: 85px;
+    padding-left: 17px;
+    margin-left:72%;    
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-radius: 40px;
+    color: antiquewhite;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+}
+.editor-bottom-cancel:hover{
+    background-color: #ad0312;
+    cursor: pointer;
+}

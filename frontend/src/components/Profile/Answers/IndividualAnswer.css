@@ -1,0 +1,36 @@
+.upvotes{
+    display:flex;
+    color:#2962e6;
+}
+.upvote-number{
+    padding-left:5px;
+    padding-top:5px;
+}
+.question-title{
+    margin-top:-1rem;
+}
+.answer{
+    font-size: 16px;
+    color: black;
+    margin-top: -.3rem;
+    margin-bottom:-1.2rem;
+}
+.individual-answer-bottom-right{
+    margin-left: 46%;
+    display: flex;
+    font-size: 18px;
+    color:#989898;
+    position: absolute;
+}
+.individual-answer-bottom{
+    margin-top: -10px;
+    display: flex;
+    font-size: 16px;
+    height: 30px;
+    margin-bottom: 5px;
+  }
+  .individual-answer-bottom-left{
+    display: flex;
+    width:35%;
+  }
+  

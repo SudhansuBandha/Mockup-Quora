@@ -1,0 +1,43 @@
+.follow-button-success{
+    margin-left: 10px;
+    width: fit-content;
+    display:flex;
+    padding: 2px 15px 0px 15px;
+    height: 30px;
+    color: #2962e6;
+  }
+
+  .follow-button-success:hover{
+    background-color: #edeff2;
+    border-radius: 40px;
+    cursor: pointer;
+  }
+  .follow-button-fail{
+    margin-left: 10px;
+    width: fit-content;
+    display:flex;
+    padding: 2px 15px 0px 15px;
+    height: 30px;
+    color:#989898;
+  }
+
+  .follow-button-fail:hover{
+    background-color: #edeff2;
+    border-radius: 40px;
+    cursor: pointer;
+  }
+  .follow-button-text{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .follow-button-separator{
+    margin-top: -4px;
+  }
+  .follow-button-number{
+    padding-left: 5px;
+  }
+  .follow-button-text-fail{
+      
+      padding-left: 5px;
+    
+  }

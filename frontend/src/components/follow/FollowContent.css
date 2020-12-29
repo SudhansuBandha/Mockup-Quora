@@ -1,0 +1,34 @@
+.follow-page-content{
+    padding-top:12px;
+    
+    min-height: 60px;
+    width: 75%;
+  }
+  .follow-user-details{
+    display: flex;
+  }
+  .follow-profile-name{
+    margin-left:10px;
+  }
+  .follow-user-image{
+    height: 32px;
+    width: 32px;
+  }
+  .follow-profile-name{
+    margin-left:10px;
+  }
+  .follow-links{
+    color:black
+  }
+  .follow-links:hover{
+    color:#ad0312;
+  }
+  .details-description-follow{
+    font-style: italic;
+    font-size: .9rem;
+    padding-left:5px;
+  }
+  .button{
+    padding-top: 13px;
+    margin-left: -15px;
+  }
