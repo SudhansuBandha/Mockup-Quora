@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jswt = require("jsonwebtoken");
 const passport = require("passport");
-const key = require("../../setup/url");
+const key = require("../../config/dev");
 
 // @type    GET
 //@route    /api/auth

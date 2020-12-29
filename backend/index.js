@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const passport = require("passport");
 const cors = require('cors');
-
+const path = require('path');
+const config = require("./config/key");
 
 //bringing all routes
 const auth = require("./routes/api/auth");
@@ -44,11 +45,11 @@ app.use("/api/activity",activity);
 app.use("/api/like", like);
 
 //mongoDB configuration
-const db = require("./setup/url").mongoURL;
+//const db = config.mongoURL;
 
 //Attempt to connect to database
 mongoose
-  .connect(db, {
+  .connect(config.mongoURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
@@ -61,6 +62,18 @@ app.use(passport.initialize());
 
 //Config for JWT strategy
 require("./strategies/jsonwtStrategies")(passport);
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+
+  // Set static folder
+  app.use(express.static("frontend/build"));
+
+  // index.html for all page routes
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
+}
 
 const port = process.env.PORT || 5000;
 

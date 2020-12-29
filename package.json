@@ -1,0 +1,16 @@
+{
+  "name": "mockup-quora",
+  "version": "1.0.0",
+  "description": "a clone of quora",
+  "main": "index.js",
+  "engine": {
+    "node": "12.19.0",
+    "npm": "6.14.8"
+  },
+  "scripts": {
+    "start": "node backend/index.js",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "author": "",
+  "license": "ISC"
+}
