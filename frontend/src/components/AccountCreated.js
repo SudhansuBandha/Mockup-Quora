@@ -28,7 +28,7 @@ function AccountCreated(props){
         image_file.append("file", image)
         //variables.image_file.append("File", image)
         //console.log(variables)
-        Axios.post('profile/image',image_file,{
+        Axios.post('/api/profile/image',image_file,{
             headers:{
                 Authorization:userInfo1.token
             }
@@ -41,7 +41,7 @@ function AccountCreated(props){
         
         let description= textAreaValue
 
-        Axios.post('profile',{description},{
+        Axios.post('/api/profile',{description},{
             headers:{
                 Authorization:userInfo1.token
             }

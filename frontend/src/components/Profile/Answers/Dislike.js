@@ -13,7 +13,7 @@ function Dislike(props) {
         if (props.dislikeAction === "") {
 
             
-                Axios.post('like/upDisLike', {answerId:props.id}, {
+                Axios.post('/api/like/upDisLike', {answerId:props.id}, {
                     headers: {
                         Authorization: userInfo1.token
                     }
@@ -32,7 +32,7 @@ function Dislike(props) {
                     })
         } else {
 
-            Axios.post('like/unDisLike', {answerId:props.id}, {
+            Axios.post('/api/like/unDisLike', {answerId:props.id}, {
                 headers: {
                     Authorization: userInfo1.token
                 }

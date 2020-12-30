@@ -33,7 +33,7 @@ function HomeScreen(props){
   })
 
   const fetchActivites = () =>{
-    Axios.post('activity/')
+    Axios.post('/api/activity/')
     .then((res)=>{
         //console.log(res.data)
         setActivites(res.data)

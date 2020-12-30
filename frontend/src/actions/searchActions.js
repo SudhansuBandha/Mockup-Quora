@@ -2,7 +2,7 @@ import axios from 'axios'
 import { SEARCH_DISPATCH_FAIL, SEARCH_DISPATCH_REQUEST, SEARCH_DISPATCH_SUCCESS, SEARCH_FAIL, SEARCH_NULL, SEARCH_REQUEST, SEARCH_SUCCESS } from '../constants/searchConstants'
 
 const searchText = (text, check)=> async (dispatch)=>{
-    const url = 'search/'+text
+    const url = '/api/search/'+text
     if(text==='')
     dispatch({type:SEARCH_NULL})
     else{
@@ -25,7 +25,7 @@ const searchText = (text, check)=> async (dispatch)=>{
 }}
 
 const searchDispatch = (text)=> async (dispatch)=>{
-    const url = 'search/'+text
+    const url = '/api/search/'+text
     /*if(text==='')
     dispatch({type:SEARCH_NULL})
     else{*/

@@ -14,7 +14,7 @@ const signin = (email, password)=> async (dispatch)=>{
     try {
         dispatch({type:USER_LOGIN_REQUEST, payload:{email, password}})
         
-        const { data } = await axios.post('auth/login',{email, password})
+        const { data } = await axios.post('/api/auth/login',{email, password})
     
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
         
@@ -28,7 +28,7 @@ const register = (uname, email, password)=> async (dispatch)=>{
     
     try {
         dispatch({type:USER_REGISTER_REQUEST, payload:{uname,email, password}})
-        const { data } = await axios.post('auth/register',{uname, email, password})
+        const { data } = await axios.post('/api/auth/register',{uname, email, password})
         
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data })
         
@@ -56,7 +56,7 @@ const logout = () => (dispatch) => {
 const profile = (id) => async (dispatch, getState) =>{
     
     
-    const url = 'profile/'+id
+    const url = '/api/profile/'+id
     
     try {
         
@@ -79,7 +79,7 @@ const profile_details =()=> async (dispatch, getState)=>{
     try {
         dispatch({type:FETCH_USER_DETAILS_REQUEST})
         
-        const { data } = await axios.get('profile/description/user',{
+        const { data } = await axios.get('/api/profile/description/user',{
             headers: {
                 Authorization: userInfo1.token,
               } 
@@ -104,7 +104,7 @@ const update =(props)=> async (dispatch, getState)=>{
         const username=props.username
     try {
         dispatch({type:USER_EDIT_USERNAME_REQUEST })
-        const { data } = await axios.post('profile',{username},{
+        const { data } = await axios.post('/api/profile',{username},{
             headers: {
                 Authorization: userInfo1.token,
               } 
@@ -121,7 +121,7 @@ const update =(props)=> async (dispatch, getState)=>{
        const  email = props.email
         try {
             dispatch({type:USER_EDIT_EMAIL_REQUEST, })
-            const { data } = await axios.post('profile',{email},{
+            const { data } = await axios.post('/api/profile',{email},{
                 headers: {
                     Authorization: userInfo1.token,
                   } 
@@ -137,7 +137,7 @@ const update =(props)=> async (dispatch, getState)=>{
         try {
             const password = props.password
             dispatch({type:USER_EDIT_PASSWORD_REQUEST})
-            const { data } = await axios.post('profile',{password},{
+            const { data } = await axios.post('/api/profile',{password},{
                 headers: {
                     Authorization: userInfo1.token,
                   } 
@@ -153,7 +153,7 @@ const update =(props)=> async (dispatch, getState)=>{
         const description=props.description
         try {
             dispatch({type:USER_EDIT_DESCRIPTION_REQUEST,})
-            const { data } = await axios.post('profile',{description},{
+            const { data } = await axios.post('/api/profile',{description},{
                 headers: {
                     Authorization: userInfo1.token,
                   } 
@@ -172,7 +172,7 @@ const verify_email = ( email )=> async (dispatch)=>{
     try {
 
         dispatch({type:VERIFY_EMAIL_REQUEST, payload:{email}})
-        const { data } = await axios.post('auth/verify_email',{email} )
+        const { data } = await axios.post('/api/auth/verify_email',{email} )
     
         dispatch({ type: VERIFY_EMAIL_SUCCESS, payload: data })
         
@@ -195,7 +195,7 @@ const deleteProfile =(props)=> async (dispatch, getState)=>{
     else{
     try {
         dispatch({type:USER_DELETE_REQUEST})
-        const { data } = await axios.delete('profile',{
+        const { data } = await axios.delete('/api/profile',{
             headers: {
                 Authorization: userInfo1.token,
               } 

@@ -75,7 +75,7 @@ const HomeScreenAnswers = (props) => {
       setCommentId(answer_id)
       setDeleteId('')
       setAnswerId('')
-      const url ="comment/"+answer_id
+      const url ="/api/comment/"+answer_id
       const data = await axios.get(url)
       setComments(data.data)
       if(posted_comment || message)
@@ -86,7 +86,7 @@ const HomeScreenAnswers = (props) => {
     
     const length =async ()=>{
       
-      const url ="comment/"+props.answer.id
+      const url ="/api/comment/"+props.answer.id
       axios.get(url)
       .then((result)=>{
         
@@ -124,7 +124,7 @@ const HomeScreenAnswers = (props) => {
       
       length()
       if(props.condition){
-        Axios.get('activity/date/'+props.answer.date).
+        Axios.get('/api/activity/date/'+props.answer.date).
         then((date)=>{
           setDate(date.data)
           })
@@ -133,7 +133,7 @@ const HomeScreenAnswers = (props) => {
         setDate(props.answer.date)
       }
 
-      Axios.get('like/getLikes/'+props.answer.id)
+      Axios.get('/api/like/getLikes/'+props.answer.id)
       .then((result)=>{
         setLikeCount(result.data.likes.length)
 
@@ -145,7 +145,7 @@ const HomeScreenAnswers = (props) => {
       })
       .catch((err)=>{console.log(err)})
 
-      Axios.get('like/getDislikes/'+props.answer.id)
+      Axios.get('/api/like/getDislikes/'+props.answer.id)
       .then((result)=>{
 
         result.data.dislikes.map((dislike)=>{

@@ -9,7 +9,7 @@ const listQuestions = () => async (dispatch) => {
     
     try {
         dispatch({type:QUESTION_FULL_REQUEST});
-        const {data} = await axios.get('questions/')
+        const {data} = await axios.get('/api/questions/')
         
         dispatch({type:QUESTION_FULL_SUCCESS, payload:data})
 
@@ -21,7 +21,7 @@ const listQuestions = () => async (dispatch) => {
 
 const listQuestionsUser = (id) => async (dispatch, getState) => {
     
-    const url = 'questions/fetch/'+id
+    const url = '/api/questions/fetch/'+id
     try {
         dispatch({type:QUESTION_FETCH_USER_REQUEST});
         const {data} = await axios.get(url)
@@ -42,7 +42,7 @@ const registerQuestion= (question) => async (dispatch, getState) =>{
     else{
     try {
         dispatch({type:QUESTION_POST_REQUEST});
-        const {data} = await axios.post("questions/",{question},
+        const {data} = await axios.post("/api/questions/",{question},
         {
             headers: {
                 Authorization: userInfo1.token
@@ -56,7 +56,7 @@ const registerQuestion= (question) => async (dispatch, getState) =>{
 }}
 
 const editQuestion =(question,question_id)=>async (dispatch, getState)=>{
-    const url = 'questions/edit/'+question_id
+    const url = '/api/questions/edit/'+question_id
     const { userLoggedin: { userInfo1 } } = getState()
     try {
         dispatch({type:QUESTION_EDIT_REQUEST});
@@ -76,7 +76,7 @@ const editQuestion =(question,question_id)=>async (dispatch, getState)=>{
 const deleteQuestion =(question_id)=>async (dispatch, getState)=>{
     
     
-    const url = 'questions/delete/'+question_id
+    const url = '/api/questions/delete/'+question_id
     const { userLoggedin: { userInfo1 } } = getState()
     try {
         dispatch({type:QUESTION_DELETE_REQUEST});
@@ -95,7 +95,7 @@ const deleteQuestion =(question_id)=>async (dispatch, getState)=>{
 
 const selectedQuestion = (id) =>async(dispatch)=>{
     try {
-        let url = "answers/question/"+id
+        let url = "/api/answers/question/"+id
         dispatch({type:QUESTION_PAGE_REQUEST});
         const {data} = await axios.get(url)
         

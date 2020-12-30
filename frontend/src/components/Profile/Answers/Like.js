@@ -14,7 +14,7 @@ function Like(props) {
         const answerId=props.id
         if (props.likeAction === "") {
             console.log("reached for liking")
-            Axios.post('like/upLike',{answerId:props.id},{
+            Axios.post('/api/like/upLike',{answerId:props.id},{
                 headers:{
                     Authorization:userInfo1.token
                 }
@@ -39,7 +39,7 @@ function Like(props) {
 
         } else {
 
-            Axios.post('like/unLike', {answerId:props.id}, {
+            Axios.post('/api/like/unLike', {answerId:props.id}, {
                 headers: {
                     Authorization: userInfo1.token
                 }
