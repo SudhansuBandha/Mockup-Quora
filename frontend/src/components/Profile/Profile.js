@@ -41,7 +41,7 @@ function Profile(props){
     
     useEffect(() => {
         if(Profile){
-        Axios.post("http://localhost:5000/api/following/followers",{userTo:Profile._id, type:"user"})
+        Axios.post("following/followers",{userTo:Profile._id, type:"user"})
         .then((response)=>{
             setFollowers(response.data)
         })

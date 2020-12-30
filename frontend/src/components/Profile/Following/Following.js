@@ -17,7 +17,7 @@ function Following(props) {
             userId:Profile._id,
             type:"user"
         }
-        Axios.post('http://localhost:5000/api/following',variables)
+        Axios.post('following',variables)
         .then((result)=>{
             setFollowing(result.data)
             setLoading(false)

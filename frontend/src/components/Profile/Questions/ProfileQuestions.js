@@ -38,7 +38,7 @@ function ProfileQuestions(props) {
     
     useEffect(() => {
 
-        Axios.get('http://localhost:5000/api/questions/fetch/'+Profile._id)
+        Axios.get('questions/fetch/'+Profile._id)
         .then((data)=>{
           console.log(data.data)
           setQuestions(data.data)

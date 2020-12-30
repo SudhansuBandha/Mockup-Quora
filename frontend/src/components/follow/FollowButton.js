@@ -21,7 +21,7 @@ function FollowButton(props) {
 
         if(isFollowing){
         
-        let url= "http://localhost:5000/api/following/unfollow_request"
+        let url= "following/unfollow_request"
         let variables={
             type:"",
             userTo:"",
@@ -62,7 +62,7 @@ function FollowButton(props) {
             }).catch((err)=>{console.log(err)})
         }
     }else{
-        let url= "http://localhost:5000/api/following/request"
+        let url= "following/request"
         
 
         if(props.type==="question"){
@@ -111,7 +111,7 @@ function FollowButton(props) {
 
     useEffect(() => {
 
-        let url="http://localhost:5000/api/following/followed/"
+        let url="following/followed/"
         const variables={
             userTo:"",
             questionTo:"",
@@ -131,7 +131,7 @@ function FollowButton(props) {
                 if(response.data.followed){
                     setIsFollowing(true)
                     variables.type="question"
-                    Axios.post("http://localhost:5000/api/following/followers",variables)
+                    Axios.post("following/followers",variables)
                     .then((result)=>{
                         setLength(result.data.length)
                     }).catch((err)=>{console.log(err)})
@@ -152,7 +152,7 @@ function FollowButton(props) {
                 if(response.data.followed){
                     setIsFollowing(true)
                     variables.type="user"
-                    Axios.post("http://localhost:5000/api/following/followers",variables)
+                    Axios.post("following/followers",variables)
                     .then((response)=>{
                         setLength(response.data.length)
                     }).catch((err)=>{console.log(err)})

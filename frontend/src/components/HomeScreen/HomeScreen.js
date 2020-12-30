@@ -29,13 +29,13 @@ function HomeScreen(props){
   useEffect(() => {
           
     fetchActivites()
-    Axios.get('http://localhost:5000/').then((res)=>{console.log(res.data)})    
+    //Axios.get('/').then((res)=>{console.log(res.data)})    
   })
 
   const fetchActivites = () =>{
-    Axios.post('http://localhost:5000/api/activity?page='+page)
+    Axios.post('activity/')
     .then((res)=>{
-        console.log(res.data)
+        //console.log(res.data)
         setActivites(res.data)
         setLoading(false)
         
@@ -48,12 +48,7 @@ const loadMoreItems = () => {
   console.log('CurrentPage', page)
   setPage(page+1)
   
-  Axios.post('http://localhost:5000/api/activity?page='+page)
-  .then((res)=>{
-      console.log(res.data)
-      setActivites([...activites, ...res.data])
-      
-  })
+  
 
 }
 

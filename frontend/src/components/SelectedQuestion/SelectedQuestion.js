@@ -97,12 +97,12 @@ function SelectedQuestion(props) {
       
         //length()
         //console.log(props.match.params.id)
-        Axios.get('http://localhost:5000/api/questions/'+props.match.params.id)
+        Axios.get('questions/'+props.match.params.id)
         .then((result)=>{
           //console.log(result.data)
           setQuestion(result.data)
         }).catch((err)=>{console.log(err)})
-        Axios.get('http://localhost:5000/api/answers/question/'+props.match.params.id)
+        Axios.get('answers/question/'+props.match.params.id)
         .then(({ data })=>{
           //console.log(data)
           setAnswers(data)

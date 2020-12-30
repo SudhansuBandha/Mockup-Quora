@@ -16,7 +16,7 @@ function Follwers(props) {
             userTo:Profile._id,
             type:"user"
         }
-        Axios.post('http://localhost:5000/api/following/followers',variables)
+        Axios.post('following/followers',variables)
         .then((result)=>{
             setFollowers(result.data)
             setLoading(false)

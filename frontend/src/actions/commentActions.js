@@ -4,7 +4,7 @@ import { ANSWER_COMMENT_DELETE_FAIL, ANSWER_COMMENT_DELETE_REQUEST, ANSWER_COMME
 import axios from 'axios'
 
 const postComment =(comment,answer_id) =>async(dispatch,getState) =>{
-        const url ="http://localhost:5000/api/comment/"+answer_id
+        const url ="comment/"+answer_id
         
         const { userLoggedin:{ userInfo1 } } = getState()
       
@@ -24,7 +24,7 @@ const postComment =(comment,answer_id) =>async(dispatch,getState) =>{
     
     }
     const removeComment =(comment_id) =>async(dispatch, getState) =>{
-        const url ="http://localhost:5000/api/comment/"+comment_id
+        const url ="comment/"+comment_id
         console.log(url)
         
         const { userLoggedin:{ userInfo1 } } = getState()

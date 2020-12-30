@@ -15,7 +15,7 @@ function SingleComment(props) {
     const [date, setDate] = useState('')  
     
     useEffect(()=>{
-      Axios.get('http://localhost:5000/api/activity/date/'+props.comment.date).
+      Axios.get('activity/date/'+props.comment.date).
         then((date)=>{
           setDate(date.data)
           })

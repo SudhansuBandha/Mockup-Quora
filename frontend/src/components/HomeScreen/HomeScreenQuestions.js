@@ -47,13 +47,13 @@ const HomeScreenQuestion = (props) => {
     useEffect(() => {
       console.log(userLoggedin)
       
-      Axios.get('http://localhost:5000/api/answers/question/'+props.question._id)
+      Axios.get('answers/question/'+props.question._id)
       .then((response)=>{
         console.log(props.question._id)
         setAnswers(response.data.length)
         setLoading(true)
       })
-      Axios.get('http://localhost:5000/api/activity/date/'+props.question.date).
+      Axios.get('activity/date/'+props.question.date).
         then((date)=>{
           setDate(date.data)
           })

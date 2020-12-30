@@ -23,7 +23,7 @@ function ProfileActivities(props) {
     })
 
     const fetchActivites = () =>{
-        Axios.post('http://localhost:5000/api/activity/'+Profile._id)
+        Axios.post('activity/'+Profile._id)
         .then((res)=>{
             
             setActivites(res.data)

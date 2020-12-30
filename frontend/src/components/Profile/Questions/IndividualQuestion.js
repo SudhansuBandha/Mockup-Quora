@@ -46,7 +46,7 @@ const IndividualQuestion = (props) => {
     useEffect(() => {
       console.log(userLoggedin)
       
-      Axios.get('http://localhost:5000/api/answers/question/'+props.question._id)
+      Axios.get('answers/question/'+props.question._id)
       .then((response)=>{
         console.log(props.question._id)
         setAnswers(response.data.length)

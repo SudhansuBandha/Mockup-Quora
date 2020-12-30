@@ -37,7 +37,7 @@ function ProfileAnswers(props) {
     
 
     useEffect(()=>{
-      axios.get('http://localhost:5000/api/answers/user_fetch/'+Profile._id).then(({ data }) => {
+      axios.get('answers/user_fetch/'+Profile._id).then(({ data }) => {
         setLoading(false)  
         setAnswers(data)
 

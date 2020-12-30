@@ -10,7 +10,7 @@ import {
 
 const postAnswer = (answer, question) => async(dispatch, getState) =>{
     const { userLoggedin: { userInfo1 } } = getState();
-    const url = "http://localhost:5000/api/answers/post/"+question
+    const url = "answers/post/"+question
     if(question===null) dispatch({type:ANSWER_POST_NULL})
     else{
     try {
@@ -33,13 +33,13 @@ const individualAnswer = (answer_id) => async(dispatch) =>{
     
     try {
         dispatch({type:ANSWER_SHOW_REQUEST});
-        let url = "http://localhost:5000/api/answers/fetch/"+answer_id
+        let url = "answers/fetch/"+answer_id
         const answer_details = await axios.get(url)
     
-        url = "http://localhost:5000/api/profile/"+answer_details.data.user
+        url = "profile/"+answer_details.data.user
         const user_profile = await axios.get(url)
     
-        url = 'http://localhost:5000/api/questions/'+answer_details.data.question
+        url = 'questions/'+answer_details.data.question
         const question = await axios.get(url)
     
         const data={
@@ -63,7 +63,7 @@ const listAnswersUser = (id) => async (dispatch, getState) => {
     
     try {
         dispatch({type:ANSWER_FETCH_USER_REQUEST});
-        let url = 'http://localhost:5000/api/answers/user_fetch/'+id
+        let url = 'answers/user_fetch/'+id
     
         const answers = await axios.get(url)
         dispatch({type:ANSWER_FETCH_USER_SUCCESS, payload:answers.data})
@@ -75,7 +75,7 @@ const listAnswersUser = (id) => async (dispatch, getState) => {
 
 
 const editAnswer =(answer,answer_id)=>async (dispatch, getState)=>{
-    const url = 'http://localhost:5000/api/answers/edit/'+answer_id
+    const url = 'answers/edit/'+answer_id
     const { userLoggedin: { userInfo1 } } = getState()
     if(answer===null)dispatch({type:ANSWER_EDIT_NULL})
     else{
@@ -96,7 +96,7 @@ const editAnswer =(answer,answer_id)=>async (dispatch, getState)=>{
 }
 const deleteAnswer =(answer_id)=>async (dispatch, getState)=>{
        
-    const url = 'http://localhost:5000/api/answers/delete/'+answer_id
+    const url = 'answers/delete/'+answer_id
     const { userLoggedin: { userInfo1 } } = getState()
     try {
         dispatch({type:ANSWER_DELETE_REQUEST});
