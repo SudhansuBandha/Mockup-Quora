@@ -38,7 +38,7 @@ function ProfileQuestions(props) {
     
     useEffect(() => {
 
-        Axios.get('/api/questions/fetch/'+Profile._id)
+        Axios.get('/api/questions/fetch/'+props.profile_id)
         .then((data)=>{
           console.log(data.data)
           setQuestions(data.data)
@@ -68,6 +68,7 @@ function ProfileQuestions(props) {
               <IndividualQuestion 
               question={question}
               history={props.history}
+              profile_id={props.profile_id}
               /*loadEditor={loadEditor}
               editorOpen={editorOpen}*//>  
               </div>  

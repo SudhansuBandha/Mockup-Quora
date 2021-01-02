@@ -9,7 +9,7 @@ import { searchDispatch, searchText } from '../../actions/searchActions'
 import Cookie from 'js-cookie'
 import { selectedQuestion } from '../../actions/questionActions'
 import { profile } from '../../actions/userActions'
-
+import ReactRoundedImage from "react-rounded-image"
 
 function SearchModal({ open, onClose, props, text, id }) {
     
@@ -73,7 +73,7 @@ function SearchModal({ open, onClose, props, text, id }) {
         <div className="search-modal-textarea">
           {
             (single.type==="question")
-            ?<Link to={'/'+single.question}
+            ?<Link to={'/'+single.id}
             className="search-links"
             onClick={(e)=>QuestionDispatch(single.id)}
             >
@@ -87,7 +87,12 @@ function SearchModal({ open, onClose, props, text, id }) {
             onClick={(e)=>{Profile(single.id)}}
             >
             <div className="search-modal-text">
-              <img src={single.image} className="search-modal-image"/>
+            <ReactRoundedImage
+            image={single.image}
+            imageWidth="24"
+            imageHeight="24"
+            roundedSize="0"
+            />
               <p className="search-modal-profile-text">Profile :</p>
               <p><strong>{single.username.substring(0,text.length)}</strong>{single.username.substring(text.length)}</p>
             </div>

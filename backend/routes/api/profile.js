@@ -1,6 +1,11 @@
-if(process.env.NODE_ENV !== "production"){
+//DURING DEPLOYMENT//
+/*if(process.env.NODE_ENV !== "production"){
 require('dotenv').config({ path: '.env' })
-}
+}*/
+
+//DURING LOCAL PRODUCTION//
+require('dotenv').config({ path: '.env' })
+
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
@@ -42,7 +47,7 @@ router.get(
   "/:id",
   (req, res) => {
     
-    Person.findOne({ _id: req.params.id })
+    Person.findOne({ username: req.params.id })
       .then((profile) => {
         if (!profile) {
           return res.status(404).json({ profilenotfound: "No profile Found" });
@@ -135,7 +140,8 @@ upload.single("file"),
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: process.env.AWS_REGION
     })
-   
+  console.log(process.env)
+  console.log(process.env.NODE_ENV) 
     let params ={
       Bucket: process.env.AWS_BUCKET_NAME,
       Key: file.originalname,
@@ -194,6 +200,15 @@ passport.authenticate("jwt",{session:false}),
 
 })
 
+//Fetch image url
+router.get('/image_url/:id',
+(req, res)=>{
+  Person.findOne({_id:req.params.id})
+  .then((person)=>{
+    res.json(person.profilepic)
+  })
+  .catch((err)=>console.log(err))
+})
 // @type    DELETE
 //@route    /api/profile/
 // @desc    route for deleting user based on ID

@@ -103,7 +103,7 @@ const IndividualQuestion = (props) => {
                   
                   <div className="card-question-bottom-right">
                   {
-                    (userInfo1 && userInfo1.id===Profile._id)?
+                    (userInfo1 && userInfo1.id===props.profile_id)?
                     <div className="question-edit">
                     <div data-tip data-for="editTip" className="share" 
                     onClick={()=>{
@@ -131,7 +131,7 @@ const IndividualQuestion = (props) => {
                     </div>
                   
                   {
-                    (userInfo1 && userInfo1.id===Profile._id)
+                    (userInfo1 && userInfo1.id===props.profile_id)
                     ? <div className="question-delete">
                     <div data-tip data-for="deleteTip" 
                     onClick={()=>{

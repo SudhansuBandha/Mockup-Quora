@@ -88,7 +88,10 @@ function NavBar(props){
         
 
         {userInfo1 ? (
-          <NavLink  to={'/profile/'+userInfo1.username} className="red link" onClick={Profile}>
+          <NavLink  to={'/profile/'+userInfo1.username}
+           className="red link" 
+           onClick={Profile}
+           target="_blank_">
             <div className="profile_tab">
               {FU}Profile
             </div>

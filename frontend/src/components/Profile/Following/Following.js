@@ -4,6 +4,7 @@ import Axios from 'axios'
 import { LoaderDots } from '@thumbtack/thumbprint-react'
 import FollowContent from '../../follow/FollowContent'
 
+
 function Following(props) {
     
     const [following, setFollowing] = useState([])
@@ -14,7 +15,7 @@ function Following(props) {
 
     const fetchProfileFollowing =() =>{
         const variables={
-            userId:Profile._id,
+            userId:props.profile_id,
             type:"user"
         }
         Axios.post('/api/following',variables)

@@ -15,7 +15,7 @@ import './HomeScreenQuestions.css'
 
 const HomeScreenQuestion = (props) => {
 
-    console.log(props)
+    //console.log(props)
 
     var pencil = <FontAwesomeIcon icon ={faPencilAlt}/>
     var wifi = <FontAwesomeIcon icon ={faWifi}/>
@@ -49,7 +49,7 @@ const HomeScreenQuestion = (props) => {
       
       Axios.get('/api/answers/question/'+props.question._id)
       .then((response)=>{
-        console.log(props.question._id)
+        //console.log(props.question._id)
         setAnswers(response.data.length)
         setLoading(true)
       })
@@ -63,10 +63,20 @@ const HomeScreenQuestion = (props) => {
      return (
         <div className="homescreen-question-card">
             <div className="homescreen-question-userinfo">
-                <Link to={'/profile/'+props.question.username}
+            {
+              
+              (userInfo1 && userInfo1.id===props.question.user_id)?
+              <div>
+                You have asked this on {date}
+              </div>:
+              <div>
+              <Link to={'/profile/'+props.question.username}
                 target="_blank"
                 className="username-link"
                 >{props.question.username}</Link> has asked this on {date}
+                </div>
+            }
+                
             </div>
             <Link to ={"/"+props.question._id}
             target="_blank">

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import ReactTooltip from 'react-tooltip'
 import ReplyComment from './ReplyComment'
+import ReactRoundedImage from "react-rounded-image"
 import Axios from 'axios'
 
 
@@ -13,7 +14,8 @@ function SingleComment(props) {
     console.log(props)
     var trash_small = <FontAwesomeIcon icon ={faTrashAlt} size="sm"/>
     const [date, setDate] = useState('')  
-    
+    const [profilepic, setProfilePic] = useState('')
+
     useEffect(()=>{
       Axios.get('/api/activity/date/'+props.comment.date).
         then((date)=>{
@@ -21,14 +23,27 @@ function SingleComment(props) {
           })
         .catch((err)=>{console.log(err)})
     })
-
+    useEffect(() => {
+          
+      Axios.get('/api/profile/image_url/'+props.comment.user._id)
+      .then((res)=>{
+        console.log(res.data)
+        setProfilePic(res.data)
+      })  
+        
+      })
     return (
         <div>
         
             <div className="individual-comment" key={props.comment._id}>
             <div className="comment-user">
             <div>
-            <img src="/images/default.jpg" alt="" className="single-card-img"/>
+            <ReactRoundedImage
+            image={profilepic}
+            imageWidth="36"
+            imageHeight="36"
+            roundedSize="0"
+            />
             </div>
             <div className="comment-user-details">
             <p className="" style={{paddingRight:"5px"}}><strong>{props.comment.user.username}</strong></p>

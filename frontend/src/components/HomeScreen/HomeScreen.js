@@ -51,9 +51,11 @@ const loadMoreItems = () => {
   
 
 }
-
+let count=0
     
 const renderActivites =activites.map((activity, index)=>{
+  count=count+1
+  console.log(count)
   if(activity.type==="answer"){
   //console.log(activity)
   const answer={
@@ -110,7 +112,7 @@ if(activity.type==="question"){
     {
       loading ? <div style={{paddingTop:"40px"}}><LoaderDots size="medium"/></div>: 
       <div> 
-        
+          
           {renderActivites}
          
       </div>

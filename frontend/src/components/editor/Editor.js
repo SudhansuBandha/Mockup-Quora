@@ -5,20 +5,22 @@ import { Editor } from 'react-draft-wysiwyg';
 import {editAnswer, postAnswer} from '../../actions/answerActions'
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './editor.css'
-
+import ReactRoundedImage from "react-rounded-image"
+import Axios from 'axios';
 
 
 
 export default function TextEditor(props) {
-      
+        console.log(props)
         var disco=""
-        if(props.type==="answer")disco=props.text
+        if(props.type==="editing")disco=props.text
         const [editorstate, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText(disco)))
       
         let state = {
           editorState:editorstate 
         }
-       const postedAnswer = useSelector(state => state.answerPost)
+       const [profilepic, setProfilePic] = useState('')
+        const postedAnswer = useSelector(state => state.answerPost)
        const editedAnswer = useSelector(state=>state.answerEdit)
        const user = useSelector(state=>state.userLoggedin)
        const pd=useSelector(state=>state.profileDetails)
@@ -26,7 +28,7 @@ export default function TextEditor(props) {
        const { answer } = postedAnswer
        const { editedanswer }= editedAnswer
        const {userInfo1} = user
-
+        
         const dispatch = useDispatch()
         
         const onSubmit = ()=>{
@@ -43,7 +45,17 @@ export default function TextEditor(props) {
         const onEditorStateChange = (editorState) => {
           setEditorState(editorState)
         };
-      
+        
+        useEffect(() => {
+          
+        Axios.get('/api/profile/image_url/'+userInfo1.id)
+        .then((res)=>{
+          console.log(res.data)
+          setProfilePic(res.data)
+        })  
+          
+        })
+        
         useEffect(()=>{
           if(answer)
           props.props.history.push('/')
@@ -61,7 +73,12 @@ export default function TextEditor(props) {
             <div className="editor">
               <div className="user-profile">
               <div>
-              <img src="/images/default.jpg" alt="" className="single-card-img"/>
+              <ReactRoundedImage
+            image={profilepic}
+            imageWidth="36"
+            imageHeight="36"
+            roundedSize="0"
+            />
               </div>
               <div className="user-details">
                 <div className="second-flex">

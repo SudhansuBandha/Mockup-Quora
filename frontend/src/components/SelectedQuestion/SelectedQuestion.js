@@ -14,6 +14,7 @@ import FollowButton from '../follow/FollowButton'
 import Axios from 'axios'
 import IndividualAnswer from '../Profile/Answers/IndividualAnswer'
 import { set } from 'js-cookie'
+import SelectedQuestionAnswer from './SelectedQuestionAnswer'
 
 function SelectedQuestion(props) {
     var pencil = <FontAwesomeIcon icon ={faPencilAlt}/>
@@ -36,6 +37,7 @@ function SelectedQuestion(props) {
     const [comments, setComments]=useState([])
     const [loading_show_comment, setLoading]=useState(true)
     const [answers, setAnswers] = useState([])
+    const [loader, setLoader] = useState(true)
 
     const posted_answer= useSelector(state=>state.answerPost)
     
@@ -106,7 +108,7 @@ function SelectedQuestion(props) {
         .then(({ data })=>{
           //console.log(data)
           setAnswers(data)
-          
+          setLoader(false)
       })
       })
 
@@ -121,7 +123,14 @@ function SelectedQuestion(props) {
 
     
     if(answers.length>0){        
-    return (
+    return (<div>{
+      (loader)?
+       <div className="profile-main">
+        <div style={{width:"800px", minHeight:"500px", backgroundColor:"white", paddingTop:"30px"}}>
+        <LoaderDots size="medium"/>
+      </div></div>
+      :
+      
          <div className="profile-main">
          <div className="individual-question" style={{margin:"0"}}>
             <div className="individual-card">
@@ -131,7 +140,7 @@ function SelectedQuestion(props) {
                 {(userInfo1)&&<div><div className="individual-question-bottom">
               <div className="card-question-bottom-left">
                 
-                    userInfo1 &&  <div className="question-pencil"
+                     <div className="question-pencil"
                     onClick={
                         ()=>{
                             dispatch(profile_details())
@@ -161,23 +170,12 @@ function SelectedQuestion(props) {
               </div></div>
           </div>
         }
-          {/*
-            (questionId===question_data[0].question[0]._id) &&
-            <div>
-          <TextEditor 
-              id={questionId}
-              props={props}
-              type="question"
-              onClose={()=>{
-              setQuestionId("")
-          }}/>
-      </div>
-        */}
+          
         </div>
             <div className="answers-section">
                 <div className="answers-section-header">
                     <div className="answers-section-header-content">
-                      <h6>{answers.length} Answers</h6>
+                      <h6>{answers.length} Answer(s)</h6>
                     </div>
                 </div>
                 {
@@ -196,9 +194,13 @@ function SelectedQuestion(props) {
                       description:answer.user.description,
                       profilepic:answer.user.profilepic
                     }
-                    return  <div key={answer._id}>
+                    return  <div key={answer._id}  style={{
+                      minHeight:"180px",
+                      paddingBottom:"20px",
+                      marginBottom:"10px"
+                    }}>
                      {
-                     <IndividualAnswer 
+                     <SelectedQuestionAnswer 
                      answer={obj}
                      history={props.history}
                      condition={false}
@@ -215,7 +217,8 @@ function SelectedQuestion(props) {
                 </div>
          </div>      
         </div>
-        
+    }
+        </div>        
     )
   }else{
     return null

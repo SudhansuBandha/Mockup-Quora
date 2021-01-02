@@ -78,15 +78,13 @@ function AccountCreated(props){
                             {console.log(image)}
                             <ReactRoundedImage
                             image={imageRender}
-                            roundedColor="#321124"
                             imageWidth="120"
                             imageHeight="120"
                             roundedSize="0"
                             />
                             </div>
                             :<ReactRoundedImage
-                            image="/images/default.jpg"
-                            roundedColor="#321124"
+                            image="/images/User.jpg"
                             imageWidth="120"
                             imageHeight="120"
                             roundedSize="0"

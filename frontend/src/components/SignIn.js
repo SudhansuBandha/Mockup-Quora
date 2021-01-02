@@ -19,8 +19,8 @@ function SignIn(props){
     const [login_disable, setLoginDisable] = useState(true)
 
     
-    const [email_login, setEmailLogin]=useState('')
-    const [password_login, setPasswordLogin]=useState('')
+    const [email_login, setEmailLogin]=useState('kcb011@gmail.com')
+    const [password_login, setPasswordLogin]=useState('Himansu@1')
     
     const userLoggedin = useSelector(state => state.userLoggedin)
     const userRegistered = useSelector(state => state.userRegistered)
@@ -188,6 +188,7 @@ function SignIn(props){
             <form onSubmit={submitLoginHandeler}>
             <input placeholder="Email" className="input-signin"
             name="email"
+            value={email_login}
             type="email"
             id="loginemail"
             onChange={(e)=>setEmailLogin(e.target.value)
@@ -195,6 +196,7 @@ function SignIn(props){
             />
             <input placeholder="Password" className="input-signin"
                 name="password"
+                value={password_login}
                 type="password"
                 id="loginpassword"
                 onChange={(e)=>setPasswordLogin(e.target.value)}
@@ -202,7 +204,7 @@ function SignIn(props){
             />
             <Link to="">Forgot Password?</Link>
             <div className="login-button">
-            <Button type="submit" variant="success" disabled={login_disable}>Login</Button>
+            <Button type="submit" variant="success">Login</Button>
             </div>
             {error1? 
                 <div className="form-error-message">Please try to login with a valid Email ID or Password</div>

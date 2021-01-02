@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { profile } from '../../actions/userActions'
 import FollowButton from './FollowButton'
 import './FollowContent.css'
+import ReactRoundedImage from "react-rounded-image"
 
 function FollowContent(props) {
     console.log(props)
@@ -24,8 +25,14 @@ function FollowContent(props) {
     }}>
         <div className="follow-page-content">
         <div className="follow-user-details">
-            <div><img src={props.element.userTo.profilepic}
-            className="follow-user-image"/></div>    
+
+            <div>   
+                <ReactRoundedImage
+            image={props.element.userTo.profilepic}
+            imageWidth="32"
+            imageHeight="32"
+            roundedSize="0"
+            /></div>    
             
         <div className="follow-profile-name">
         <Link to={'/profile/'+props.element.userTo.username}
@@ -55,11 +62,15 @@ function FollowContent(props) {
             borderBottom:"2px solid #dee3e0", 
             display:"flex",
             width:"95%"
-        }}>
+        }}>        
             <div className="follow-page-content">
             <div className="follow-user-details">
-                <div><img src={props.element.userFrom.profilepic}
-                className="follow-user-image"/></div>    
+                <div><ReactRoundedImage
+                image={props.element.userFrom.profilepic}
+                imageWidth="32"
+                imageHeight="32"
+                roundedSize="0"
+                /></div>    
                 
             <div className="follow-profile-name">
             <Link to={'/profile/'+props.element.userFrom.username}

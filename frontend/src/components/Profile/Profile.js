@@ -26,10 +26,15 @@ function Profile(props){
     const [editDescriptionOpen, setEditDescriptionOpen] = useState(false)
     const [textValue, setTextValue] = useState('')
     const [followers, setFollowers] = useState('')
-
+    const [Profile, setProfile] = useState('')
+    const [loading, setLoading] = useState(true)
+    /*
     const userProfile = useSelector(state => state.userProfile)
     const { loading,Profile,error } = userProfile
-    if(userProfile) Cookie.set('userProfile', JSON.stringify(userProfile))
+    if(userProfile) {
+        sessionStorage.setItem('userProfile', JSON.stringify(userProfile))
+        
+    }*/
     
     const dispatch = useDispatch()
     
@@ -40,6 +45,14 @@ function Profile(props){
 
     
     useEffect(() => {
+        
+        Axios.get('/api/profile/'+props.match.params.id)
+        .then((res)=>{
+            setProfile(res.data)
+            setLoading(false)
+        })
+        .catch((err)=>console.log(err))
+
         if(Profile){
         Axios.post("/api/following/followers",{userTo:Profile._id, type:"user"})
         .then((response)=>{
@@ -54,8 +67,6 @@ function Profile(props){
     
     return  loading ? <div className="profile-main"><div className="profile">
     <div className="profile-headline"><div className="loaders"><LoaderDots size="medium"/></div></div></div></div>: 
-     (error) ? <div className="profile-main"><div className="profile">
-     <div className="profile-headline"><div>Error</div></div></div></div> :
      (Profile)? <div className="profile-main">
      <div className="profile">
      <div className="profile-headline">
@@ -134,11 +145,11 @@ function Profile(props){
     </div>
     <div>
         <Switch>
-            <Route path={'/profile/'+Profile.username+'/followers'} component={Followers}/>
-            <Route path={'/profile/'+Profile.username+'/following'} component={Following}/>
-            <Route path={'/profile/'+Profile.username+'/questions'} component={ProfileQuestions}/>
-            <Route path={'/profile/'+Profile.username+'/answers'} component={ProfileAnswers}/>
-            <Route path={'/profile/'+Profile.username} component={ProfileActivities}/>
+            <Route path={'/profile/'+Profile.username+'/followers'} render={()=><Followers profile_id={Profile._id}/>}/>
+            <Route path={'/profile/'+Profile.username+'/following'} render={()=><Following profile_id={Profile._id}/>}/>
+            <Route path={'/profile/'+Profile.username+'/questions'} render={()=><ProfileQuestions profile_id={Profile._id}/>}/>
+            <Route path={'/profile/'+Profile.username+'/answers'} render={()=><ProfileAnswers profile_id={Profile._id}/>}/>
+            <Route path={'/profile/'+Profile.username} render={()=><ProfileActivities profile_id={Profile._id}/>}/>
         </Switch>
     </div>
     </div>
@@ -146,7 +157,7 @@ function Profile(props){
             <div className="profile-main">
     <div className="profile">
      <div className="profile-headline">
-     <h4>Please Log In</h4>
+     
      </div></div>
             </div>
    

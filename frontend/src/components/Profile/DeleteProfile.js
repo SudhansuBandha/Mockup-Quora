@@ -31,7 +31,7 @@ function DeleteProfile(props){
             </div>
             </div>:
     
-    <div className="account">
+    <div className="account-delete">
             <div className="details-box">
                 <div className="inside-details">
                     
@@ -42,7 +42,7 @@ function DeleteProfile(props){
                     <Link to={"/profile/"+userInfo1.username}>
                     <Button type="" variant="success" className="sp">No, Back To Profile Page</Button>
                     </Link>
-                    <div>
+                    <div style={{marginLeft:"20px"}}>
                     <Button type="" variant="danger" className="sp" onClick={Delete}>Yes, Delete My Account</Button>
                     </div>
                     </div>

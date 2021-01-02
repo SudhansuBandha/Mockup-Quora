@@ -6,13 +6,13 @@ import IndividualAnswer from '../Answers/IndividualAnswer'
 import IndividualQuestion from '../Questions/IndividualQuestion'
 
 function ProfileActivities(props) {
-    
+    console.log(props)    
     const [activites, setActivites]=useState([])
     const [loading, setLoading] = useState(true)
 
 
     const userProfile = useSelector(state => state.userProfile)
-    const { Profile } = userProfile
+    //const { Profile } = userProfile
     
     
 
@@ -23,7 +23,7 @@ function ProfileActivities(props) {
     })
 
     const fetchActivites = () =>{
-        Axios.post('/api/activity/'+Profile._id)
+        Axios.post('/api/activity/'+props.profile_id)
         .then((res)=>{
             
             setActivites(res.data)
@@ -74,7 +74,7 @@ function ProfileActivities(props) {
             user:activity.user._id,
             date:activity.date
         }
-        return <div key={index}>
+        return <div key={index} className="question-card">
                 {
                     <IndividualQuestion 
                         question={question}

@@ -4,14 +4,16 @@ import { postComment, removeComment } from '../../actions/commentActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import ReactTooltip from 'react-tooltip'
+import ReactRoundedImage from "react-rounded-image"
 import SingleComment from './SingleComment'
+import Axios from 'axios'
 
 
 function Comment(props) {
     var trash_small = <FontAwesomeIcon icon ={faTrashAlt} size="sm"/>
     //console.log(props.comments)
     const dispatch = useDispatch()
-
+    const [profilepic, setProfilePic] = useState('')
     const [commentText, setCommentText] = useState('')
 
     const userLoggedin = useSelector(state=>state.userLoggedin)
@@ -28,7 +30,15 @@ function Comment(props) {
         dispatch(removeComment(comment_id))
      }
 
-     
+     useEffect(() => {
+          
+      Axios.get('/api/profile/image_url/'+userInfo1.id)
+      .then((res)=>{
+        console.log(res.data)
+        setProfilePic(res.data)
+      })  
+        
+      })
     return (
         
         
@@ -37,7 +47,12 @@ function Comment(props) {
             { (userInfo1) &&
               <div className="comment-section">
             
-              <div><img src="/images/default.jpg" alt="" className="single-card-img"/></div>
+              <div><ReactRoundedImage
+              image={profilepic}
+              imageWidth="36"
+              imageHeight="36"
+              roundedSize="0"
+              /></div>
               <form className="comment-box">
               <input type="text" name="" 
               className="comment-txt" 

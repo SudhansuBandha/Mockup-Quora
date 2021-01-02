@@ -12,7 +12,7 @@ import Cookie from 'js-cookie'
 
 const user = Cookie.getJSON('userLoggedin') || {}
 
-const profile = Cookie.getJSON('userProfile') || {}
+const profile = JSON.parse(sessionStorage.getItem('userProfile')) || {}
 const questionsUser = Cookie.getJSON('questionsUser') || {}
 const edit = Cookie.getJSON('edit') || {}
 const answersUser = Cookie.getJSON('answersUser') || {}

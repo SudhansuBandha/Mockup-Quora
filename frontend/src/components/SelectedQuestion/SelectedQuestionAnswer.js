@@ -6,22 +6,18 @@ import ReactTooltip from 'react-tooltip'
 import {useDispatch, useSelector} from 'react-redux'
 import DeleteAnswer from '../modals/DeleteAnswer'
 import TextEditor from '../editor/Editor'
-import './HomeScreenAnswers.css'
+import '../Profile/Answers/IndividualAnswer.css'
 import { LoaderDots } from '@thumbtack/thumbprint-react'
-import { set } from 'js-cookie'
-import { selectedQuestion } from '../../actions/questionActions'
 import Comment from '../comment/Comment'
-import { profile, profile_details } from '../../actions/userActions'
+import { profile_details } from '../../actions/userActions'
 import axios from 'axios'
-import FollowButton from '../follow/FollowButton'
 import Axios from 'axios'
-import { LikeOutlined } from '@ant-design/icons'
-import Like from '../Profile/Answers/Like'
 import Dislike from '../Profile/Answers/Dislike'
+import Like from '../Profile/Answers/Like'
 import ReactRoundedImage from "react-rounded-image"
 
-const HomeScreenAnswers = (props) => {
-    //console.log(props)
+const SelectedQuestionAnswer = (props) => {
+    
     var comment = <FontAwesomeIcon icon ={faComment}/>
     var share = <FontAwesomeIcon icon ={faShare}/>
     var trash = <FontAwesomeIcon icon ={faTrashAlt}/>
@@ -47,8 +43,6 @@ const HomeScreenAnswers = (props) => {
 
 
 
-
-
     const userLoggedin = useSelector(state=>state.userLoggedin)
     const p_d = useSelector(state=>state.userProfile)
     //const comments_data = useSelector(state=>state.commentShow)
@@ -64,7 +58,7 @@ const HomeScreenAnswers = (props) => {
     
     
     const {userInfo1} = userLoggedin
-    
+    const {Profile} = p_d
 
     
     
@@ -95,14 +89,8 @@ const HomeScreenAnswers = (props) => {
       .catch((err)=>{console.log(err)})
            
     }
-   const QuestionDispatch=(id)=>{
-     
-    dispatch(selectedQuestion(id))
-  }
-  const Profile = (id) =>{
-    
-    dispatch(profile(id))
-  }
+   
+
     useEffect(()=>{
         if(posted_comment){
           setLoading(true)
@@ -150,6 +138,7 @@ const HomeScreenAnswers = (props) => {
 
       Axios.get('/api/like/getDislikes/'+props.answer.id)
       .then((result)=>{
+        
 
         result.data.dislikes.map((dislike)=>{
           if (dislike.userId === props.answer.user_id) {
@@ -158,7 +147,6 @@ const HomeScreenAnswers = (props) => {
         })
       })
       .catch((err)=>{console.log(err)})
-
       
     })
     
@@ -166,21 +154,24 @@ const HomeScreenAnswers = (props) => {
 
     return (
                                 
-            <div className="question-card" style={{width:"100%",paddingTop:"0"}}>
-              <div className="flex-container">
+            <div className="question-card" style={{
+                width:"100%"
+            }}>
+           
+
+              <div className="flex-container" style={{height:"60px"}}>
             <div>
-            <ReactRoundedImage
-            image={props.answer.profilepic}
-            imageWidth="45"
-            imageHeight="45"
-            roundedSize="0"
-            />
+              <ReactRoundedImage
+                image={props.answer.profilepic}
+                imageWidth="36"
+                imageHeight="36"
+                roundedSize="0"
+                />
             </div>    
             <div className="user-details">
                 <div className="second-flex">
                 <Link to={"/profile/"+props.answer.user}
-                target="_blank"
-                //onClick={(e)=>{Profile(props.answer.user_id)}}
+                target="_black"
                 >
                 <p className="card-title"><strong>{
                   
@@ -194,117 +185,113 @@ const HomeScreenAnswers = (props) => {
                 <p className="white">{props.answer.description}</p>
                 </div>
             </div>
-            </div>
-            <div style={{height:"30px"}}>
-            { (props.condition)&&
-            <Link to ={'/'+props.answer.question_id} 
-            target="_blank">
-              <h6 className="card-title"><strong>{props.answer.question}</strong></h6>
-            </Link>
-            }
             </div>   
               <div className="answer">
                   <p>{props.answer.answer}</p>
               </div>
-               
-              <div className="individual-answer-bottom">
-              
-                  <div className="individual-answer-bottom-left">
-                  <Like
-                  likeAction={likeAction}
-                  setLikeAction={setLikeAction}
-                  likeCount={likeCount}
-                  setLikeCount={setLikeCount}
-                  dislikeAction={dislikeAction}
-                  setDislikeAction={setDislikeAction}
-                  id={props.answer.id}
-                />
-                        
-                      <div 
-                      className="option-comment" 
-                      data-tip data-for="commentTip"
-                      onClick={(e)=>{
-                        showComment(props.answer.id)
-                        }}
-                      >
-                      {comment} 
-                      <div style={{paddingLeft:"5px",marginTop:"-4px"}}>
-                        {commentNumbers}
-                      </div>
-                      
-                      </div>
-                      
-                      <ReactTooltip id="commentTip" place="top" effect="solid">
-                          Comment
-                      </ReactTooltip> 
+               {
+                 (userInfo1) ?  
+                 <div className="individual-answer-bottom" style={{marginTop:"30px"}}>
+                 <div className="individual-answer-bottom-left">
                      
+                     <Like
+                       likeAction={likeAction}
+                       setLikeAction={setLikeAction}
+                       likeCount={likeCount}
+                       setLikeCount={setLikeCount}
+                       dislikeAction={dislikeAction}
+                       setDislikeAction={setDislikeAction}
+                       id={props.answer.id}
+                     />
+                     <div 
+                     className="option-comment" 
+                     data-tip data-for="commentTip"
+                     onClick={(e)=>{
+                       showComment(props.answer.id)
+                       }}
+                     >
+                     {comment} 
+                     <div style={{paddingLeft:"5px",marginTop:"-4px"}}>
+                       {commentNumbers}
+                     </div>
                      
-                     </div>   
+                     </div>
+                     
+                     <ReactTooltip id="commentTip" place="top" effect="solid">
+                         Comment
+                     </ReactTooltip> 
+                    
+                    
+                    </div>   
 
-                  <div className="homescreen-answer-bottom-right">
-                  {
-                    (userInfo1 && userInfo1.id===props.answer.user_id)?
-                    <div className="question-edit">
-                    <div data-tip data-for="editTip" className="share" 
-                    onClick={()=>{
-                     setAnswerId(props.answer.id)
-                     setCommentId('')
-                     setDeleteId('')
-                     dispatch(profile_details())
-                     }}>
-                       {editIcon}
-                    </div>
-                    
-                    <ReactTooltip id="editTip" place="top" effect="solid">
-                       Edit Answer
-                    </ReactTooltip>   
-                   </div>
-               
-                    :
-                     <div></div>
-                  }
-                     
-                  {
-                    (userInfo1 && userInfo1.id===props.answer.user_id)?
-                    <div className="question-delete">
-                  <div data-tip data-for="deleteTip" 
-                  onClick={()=>{
-                    setDeleteOpen(true)
-                    setCommentId('')
-                    setAnswerId('')
-                    setDeleteId(props.answer.id)
-                    
-                  }}>
-                          {trash} 
-                      </div>
-                      
-                      <ReactTooltip id="deleteTip" place="top" effect="solid">
-                          Delete
-                      </ReactTooltip>
-                  </div>:
-                  <div></div>
-                  }  
-                  <Dislike
-                        dislikeAction={dislikeAction}
-                        setDislikeAction={setDislikeAction}
-                        likeAction={likeAction}
-                        setLikeAction={setLikeAction}
-                        likeCount={likeCount}
-                        setLikeCount={setLikeCount}
-                        id={props.answer.id}
-                  />
-                  <div className="question-share">
-                      <div data-tip data-for="shareTip" className="share">
-                          {share}
-                      </div>
-                      <ReactTooltip id="shareTip" place="top" effect="solid">
-                          Share
-                      </ReactTooltip>
-                    </div>
-                  </div>
+                 <div className="individual-answer-bottom-right">
                  
-              </div>
-              {
+                 
+                 {
+                   (userInfo1 && userInfo1.id===props.answer.user_id)?
+                   <div className="question-edit">
+                   <div data-tip data-for="editTip" className="share" 
+                   onClick={()=>{
+                    setAnswerId(props.answer.id)
+                    setCommentId('')
+                    setDeleteId('')
+                    dispatch(profile_details())
+                    }}>
+                      {editIcon}
+                   </div>
+                   
+                   <ReactTooltip id="editTip" place="top" effect="solid">
+                      Edit Answer
+                   </ReactTooltip>   
+                  </div>
+              
+                   :
+                    <div></div>
+                 }
+                   
+                 {
+                   (userInfo1 && userInfo1.id===props.answer.user_id)?
+                   <div className="question-delete">
+                 <div data-tip data-for="deleteTip" 
+                 onClick={()=>{
+                   setDeleteOpen(true)
+                   setCommentId('')
+                   setAnswerId('')
+                   setDeleteId(props.answer.id)
+                   
+                 }}>
+                         {trash} 
+                     </div>
+                     
+                     <ReactTooltip id="deleteTip" place="top" effect="solid">
+                         Delete
+                     </ReactTooltip>
+                 </div>:
+                 <div></div>
+                 }  
+                 <Dislike
+                       dislikeAction={dislikeAction}
+                       setDislikeAction={setDislikeAction}
+                       likeAction={likeAction}
+                       setLikeAction={setLikeAction}
+                       likeCount={likeCount}
+                       setLikeCount={setLikeCount}
+                       id={props.answer.id}
+                 />
+                 <div className="question-share">
+                 <div data-tip data-for="shareTip" className="share">
+                     {share}
+                 </div>
+                 <ReactTooltip id="shareTip" place="top" effect="solid">
+                     Share
+                 </ReactTooltip>
+               </div>
+                 </div>
+                
+             </div>
+            :<div style={{height:"20px"}}></div>
+               }
+             {
                 (props.answer.id===answerId)?              
                 <div>
                 <TextEditor 
@@ -347,4 +334,4 @@ const HomeScreenAnswers = (props) => {
 
             </div>)}
 
-export default HomeScreenAnswers
+export default SelectedQuestionAnswer
