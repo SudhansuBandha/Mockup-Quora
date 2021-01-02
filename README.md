@@ -1,7 +1,7 @@
 # Mockup Quora
 
 Hey curious mind,
-This is an app in which I tried to make a replica of Quora to my best efforts using React, Redux, Node JS, Express Js, MongoDb, and little bit of AWS | [Visit Website](https://mockup-quora.herokuapp.com/)
+This is an app in which I tried to make a replica of Quora to my best efforts using React, Redux, Node JS, Express Js, MongoDb, REST Api and little bit of AWS | [Visit Website](https://mockup-quora.herokuapp.com/)
 
 ![Mockup-Quora](https://raw.githubusercontent.com/SudhansuBandha/Mockup-Quora/main/frontend/public/images/Screenshot%20(12).png)
 
@@ -34,6 +34,7 @@ under separate sections in the profile page
 
 ## Backend (Node-Js, Express, MongoDb, AWS)
 - All the necessary datas are stored in MONGO DB database using the cloud service of MONGO DB Atlas
+- REST Api features are implemented
 - Token based user authentication is used based on jsonwebtokens
 - Relevant express routings are performed for all backend related features
 - AWS S3 bucket and MONGO DB configurations are made using environment variables
